@@ -1,14 +1,16 @@
 #include <iostream>
 #include <string>
+using namespace std;
 
-int main()
-{
-    std::ios::sync_with_stdio(false);
-    std::cin.tie(NULL);
-    
-    std::string str;
-    std::cin >> str;
-    for (char& c : str)
-        c = std::toupper(c);
-    std::cout << str;
+int main() {
+	ios::sync_with_stdio(0);
+	cin.tie(0);
+
+	string s;
+	cin >> s;
+
+	for (char& c : s)
+		c = toupper(c);
+
+	cout << s;
 }

@@ -11,9 +11,9 @@ int main()
     int min, max;
     min = max = init;
     
-    for (int i = 0; i < n - 1; i++)
+    int temp;
+    for (int i = 1; i < n; i++)
     {
-        int temp;
         std::cin >> temp;
         min = temp < min ? temp : min;
         max = temp > max ? temp : max;

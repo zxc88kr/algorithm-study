@@ -1,18 +1,22 @@
-#include <cstdio>
+#include <iostream>
 
 int main()
 {
-    int length;
-    scanf("%d", &length);
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(NULL);
     
-    int num[length];
-    int min = 1000000;
-    int max = -1000000;
-    for (int i = 0; i < length; i++)
+    int n, init;
+    std::cin >> n >> init;
+    
+    int min, max;
+    min = max = init;
+    
+    for (int i = 0; i < n - 1; i++)
     {
-        scanf("%d", &num[i]);
-        min = (num[i] < min ? num[i] : min);
-        max = (num[i] > max ? num[i] : max);
+        int temp;
+        std::cin >> temp;
+        min = temp < min ? temp : min;
+        max = temp > max ? temp : max;
     }
-    printf("%d %d", min, max);
+    std::cout << min << ' ' << max;
 }

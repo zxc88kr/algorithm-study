@@ -1,29 +1,33 @@
-#include <cstdio>
+#include <iostream>
+#include <string>
+#include <vector>
 
 int main()
 {
-    char ch[1000001];
-    scanf("%s", ch);
+    std::ios::sync_with_stdio(false);
+    std::cin.tie(NULL);
     
-    int alpha[26] = { 0, };
-    for (int i = 0; ch[i] != '\0'; i++)
-        alpha[((int)ch[i] - 1) % 32] += 1;
-    
-    char more_used_alpha;
-    int max = 0;
-    int copy = 0;
-    for (int i = 0; i < 26; i++)
+    std::vector<int> alpha(26);
+
+    std::string str;
+    std::cin >> str;
+    for (auto ch : str)
+        alpha[std::toupper(ch) - 'A']++;
+
+    int max = -1;
+    int pos = -1;
+    bool flag = false;
+    for (auto it = alpha.begin(); it != alpha.end(); it++)
     {
-        if (alpha[i] > max)
+        if (*it > max)
         {
-            more_used_alpha = (char)(i + 65);
-            max = alpha[i];
-            copy = 1;
+            max = *it;
+            pos = it - alpha.begin();
+            flag = false;
         }
-        else if (alpha[i] == max) copy += 1;
+        else if (*it == max)
+            flag = true;
     }
-    if (copy > 1) printf("?");
-    else printf("%c", more_used_alpha);
+    if (flag) std::cout << '?';
+    else std::cout << (char)(pos + 'A');
 }
-    
-    

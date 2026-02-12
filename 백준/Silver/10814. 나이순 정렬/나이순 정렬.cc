@@ -4,10 +4,10 @@
 #include <string>
 #include <algorithm>
 
-bool comp(const std::pair<int, std::string>& p1,
-          const std::pair<int, std::string>& p2)
+bool compare(const std::pair<int, std::string>& p1,
+             const std::pair<int, std::string>& p2)
 {
-    return (p1.first < p2.first);
+    return p1.first < p2.first;
 }
 
 int main()
@@ -16,14 +16,14 @@ int main()
     std::cin.tie(NULL);
     std::cout.tie(NULL);
     
-    int N;
-    std::cin >> N;
-
-    std::vector<std::pair<int, std::string>> user(N);
-    for (int i = 0; i < N; i++)
-        std::cin >> user[i].first >> user[i].second;
-
-    std::stable_sort(user.begin(), user.end(), comp);
-    for (int i = 0; i < N; i++)
-        std::cout << user[i].first << ' ' << user[i].second << '\n';
+    int n;
+    std::cin >> n;
+    
+    std::vector<std::pair<int, std::string>> users(n);
+    for (int i = 0; i < n; i++)
+        std::cin >> users[i].first >> users[i].second;
+    std::stable_sort(users.begin(), users.end(), compare);
+    
+    for (auto user : users)
+        std::cout << user.first << ' ' << user.second << '\n';
 }

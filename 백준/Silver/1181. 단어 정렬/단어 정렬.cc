@@ -3,30 +3,28 @@
 #include <string>
 #include <algorithm>
 
-bool comp(std::string& str1, std::string& str2)
+bool compare(std::string& a, std::string& b)
 {
-    if (str1.length() == str2.length())
-        for (int i = 0; i < str1.length(); i++)
-            if (str1[i] != str2[i])
-                return (str1[i] < str2[i]);
-    return (str1.length() < str2.length());
+    if (a.length() == b.length())
+        return a < b;
+    return a.length() < b.length();
 }
 
 int main()
 {
     std::ios::sync_with_stdio(false);
     std::cin.tie(NULL);
-    std::cout.tie(NULL);
     
-    int N;
-    std::cin >> N;
-
-    std::vector<std::string> word(N);
-    for (int i = 0; i < N; i++)
-        std::cin >> word[i];
-
-    std::sort(word.begin(), word.end(), comp);
-    word.erase(std::unique(word.begin(), word.end()), word.end());
-    for (auto it = word.begin(); it != word.end(); it++)
-        std::cout << *it << '\n';
+    int n;
+    std::cin >> n;
+    
+    std::vector<std::string> words(n);
+    for (int i = 0; i < n; i++)
+        std::cin >> words[i];
+    std::sort(words.begin(), words.end(), compare);
+    
+    words.erase(std::unique(words.begin(), words.end()), words.end());
+    
+    for (auto word : words)
+        std::cout << word << '\n';
 }

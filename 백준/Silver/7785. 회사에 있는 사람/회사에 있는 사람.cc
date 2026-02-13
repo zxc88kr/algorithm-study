@@ -1,23 +1,24 @@
 #include <iostream>
-#include <set>
 #include <string>
+#include <set>
 
-int main() {
+int main()
+{
     std::ios::sync_with_stdio(false);
     std::cin.tie(NULL);
-    std::cout.tie(NULL);
-
+    
     int n;
     std::cin >> n;
-    std::set<std::string> employee;
-    for (int i = 0; i < n; i++) {
-        std::string person, access;
-        std::cin >> person >> access;
-        if (access == "enter") employee.insert(person);
-        else                   employee.erase(person);
+    
+    std::set<std::string, std::greater<std::string>> st;
+    std::string name, status;
+    for (int i = 0; i < n; i++)
+    {
+        std::cin >> name >> status;
+        if (status == "enter") st.insert(name);
+        else st.erase(name);
     }
-
-    for (auto it = employee.rbegin(); it != employee.rend(); it++) {
-        std::cout << *it << '\n';
-    }
+    
+    for (auto it : st)
+        std::cout << it << '\n';
 }

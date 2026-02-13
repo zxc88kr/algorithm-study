@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <map>
 #include <algorithm>
 
 int main()
@@ -8,19 +9,17 @@ int main()
     std::cin.tie(NULL);
     std::cout.tie(NULL);
     
-    int N;
-    std::cin >> N;
+    int n;
+    std::cin >> n;
     
-    std::vector<int> num(N);
-    for (int i = 0; i < N; i++)
-        std::cin >> num[i];
+    std::vector<int> x(n), v;
+    for (int i = 0; i < n; i++)
+        std::cin >> x[i];
+    v = x;
     
-    std::vector<int> num_s = num;
-    std::sort(num_s.begin(), num_s.end());
-    num_s.erase(std::unique(num_s.begin(), num_s.end()), num_s.end());
-    for (int i = 0; i < N; i++)
-    {
-        auto it = std::lower_bound(num_s.begin(), num_s.end(), num[i]);
-        std::cout << it - num_s.begin() << ' ';
-    }
+    std::sort(v.begin(), v.end());
+    v.erase(std::unique(v.begin(), v.end()), v.end());
+    
+    for (auto it : x)
+        std::cout << std::lower_bound(v.begin(), v.end(), it) - v.begin() << ' ';
 }

@@ -1,12 +1,23 @@
-<html>
-<head><title>504 Gateway Time-out</title></head>
-<body>
-<center><h1>504 Gateway Time-out</h1></center>
-</body>
-</html>
-<!-- a padding to disable MSIE and Chrome friendly error page -->
-<!-- a padding to disable MSIE and Chrome friendly error page -->
-<!-- a padding to disable MSIE and Chrome friendly error page -->
-<!-- a padding to disable MSIE and Chrome friendly error page -->
-<!-- a padding to disable MSIE and Chrome friendly error page -->
-<!-- a padding to disable MSIE and Chrome friendly error page -->
+#include <iostream>
+#include <vector>
+#include <cmath>
+
+int main()
+{
+    int m, n;
+    std::cin >> m >> n;
+    
+    std::vector<int> v;
+    for (int i = m; i <= n; i++)
+    {
+        int x = std::round(std::sqrt(i));
+        if (x * x == i) v.push_back(i);
+    }
+    
+    int sum = 0;
+    for (auto it : v)
+        sum += it;
+    
+    if (v.empty()) std::cout << -1;
+    else std::cout << sum << '\n' << v[0];
+}

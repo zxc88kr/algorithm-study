@@ -7,17 +7,12 @@ int main()
     int m, n;
     std::cin >> m >> n;
     
-    int min_range = std::ceil(std::sqrt(m));
-    int max_range = std::floor(std::sqrt(n));
-    
     std::vector<int> v;
     for (int i = m; i <= n; i++)
-        for (int j = min_range; j <= max_range; j++)
-            if (j * j == i)
-            {
-                v.push_back(i);
-                break;
-            }
+    {
+        int x = std::round(std::sqrt(i));
+        if (x * x == i) v.push_back(i);
+    }
     
     int sum = 0;
     for (auto it : v)

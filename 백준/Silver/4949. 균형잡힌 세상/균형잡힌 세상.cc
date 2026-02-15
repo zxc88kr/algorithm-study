@@ -5,6 +5,7 @@
 int main()
 {
     std::ios::sync_with_stdio(false);
+    std::cin.tie(NULL);
     
     std::string str;
     while (true)
@@ -40,6 +41,7 @@ int main()
             }
         }
         
-        std::cout << (flag && st.empty() ? "yes\n" : "no\n");
+        if (flag && st.empty()) std::cout << "yes\n";
+        else std::cout << "no\n";
     }
 }

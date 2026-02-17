@@ -9,9 +9,7 @@ int main()
     std::cout.tie(NULL);
     
     int max = 123456 * 2 + 1;
-    std::vector<bool> primes(max);
-    for (int i = 0; i < max; i++)
-        primes[i] = true;
+    std::vector<bool> primes(max, true);
     primes[0] = primes[1] = false;
     
     for (int i = 2; i * i < max; i++)

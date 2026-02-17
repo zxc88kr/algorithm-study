@@ -12,7 +12,7 @@ int main()
         if (a > b)
         {
             a -= b;
-            str += "G";
+            str = "G" + str;
         }
         else if (b % 2 != 0)
         {
@@ -22,11 +22,10 @@ int main()
         else
         {
             b /= 2;
-            str += "K";
+            str = "K" + str;
         }
     }
     for (int i = 0; i < a; i++)
-        str += "G";
-    for (auto it = str.rbegin(); it < str.rend(); it++)
-        std::cout << *it;
+        str = "G" + str;
+    std::cout << str;
 }

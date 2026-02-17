@@ -4,13 +4,17 @@
 
 int main()
 {
+    std::ios::sync_with_stdio(false);
+    std::cin.tie(NULL);
+    std::cout.tie(NULL);
+    
     std::string str;
     std::cin >> str;
-    
-    std::unordered_set<std::string> words;
+
     int len = str.length();
-    for (int i = 1; i <= len; i++)
+    std::unordered_set<std::string> result;
+    for (int i = len; i >= 1; i--)
         for (int j = 0; j <= len - i; j++)
-            words.insert(str.substr(j, i));
-    std::cout << words.size();
+            result.insert(str.substr(j, i));
+    printf("%d", result.size());
 }

@@ -1,26 +1,39 @@
-#include <cstdio>
+#include <iostream>
+#include <vector>
+#include <algorithm>
 
 int main()
 {
-    while (1)
+    std::ios::sync_with_stdio(false);
+    std::cin.tie(NULL);
+    std::cout.tie(NULL);
+    
+    int max = 123456 * 2 + 1;
+    std::vector<bool> primes(max);
+    for (int i = 0; i < max; i++)
+        primes[i] = true;
+    primes[0] = primes[1] = false;
+    
+    for (int i = 2; i * i < max; i++)
+        if (primes[i])
+            for (int j = i * i; j < max; j += i)
+                primes[j] = false;
+    
+    std::vector<int> results;
+    for (int i = 0; i < max; i++)
+        if (primes[i])
+            results.push_back(i);
+    
+    while (true)
     {
         int n;
-        scanf("%d", &n);
+        std::cin >> n;
+        
         if (n == 0) break;
         
-        bool not_prime[2 * n + 1] = { false, };
+        auto start = std::lower_bound(results.begin(), results.end(), n + 1);
+        auto end = std::upper_bound(results.begin(), results.end(), 2 * n);
         
-        not_prime[0] = true;
-        not_prime[1] = true;
-        
-        for (int i = 2; i * i <= 2 * n; i++)
-            if (not_prime[i] == false)
-                for (int j = 2 * i; j <= 2 * n; j += i)
-                    not_prime[j] = true;
-        
-        int count = 0;
-        for (int i = n + 1; i <= 2 * n; i++)
-            if (not_prime[i] == false) count++;
-        printf("%d\n", count);
+        std::cout << end - start << '\n';
     }
 }

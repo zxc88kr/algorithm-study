@@ -19,7 +19,7 @@ int main()
         deq.push_back({x, i});
     }
     
-    while (deq.size() > 1)
+    while (!deq.empty())
     {
         std::pair<int, int>& p = deq.front();
         x = p.first;
@@ -39,5 +39,4 @@ int main()
                 deq.pop_back();
             }
     }
-    std::cout << deq.front().second;
 }

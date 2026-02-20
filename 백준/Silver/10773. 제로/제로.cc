@@ -3,6 +3,9 @@
 
 int main()
 {
+    std::ios::sync_with_stdio(false);
+    std::cin.tie(NULL);
+    
     int k;
     std::cin >> k;
     
@@ -16,11 +19,9 @@ int main()
     }
     
     int sum = 0;
-    int temp;
     while (!st.empty())
     {
-        temp = st.top();
-        sum += temp;
+        sum += st.top();
         st.pop();
     }
     std::cout << sum;

@@ -4,6 +4,9 @@
 
 int main()
 {
+    std::ios::sync_with_stdio(false);
+    std::cin.tie(NULL);
+    
     std::map<std::string, bool> m;
     
     int n;

@@ -1,6 +1,6 @@
 #include <iostream>
 
-long long fact(long long n)
+long fact(int n)
 {
     if (n == 0) return 1;
     return n * fact (n - 1);
@@ -8,7 +8,7 @@ long long fact(long long n)
 
 int main()
 {
-    long long n;
+    int n;
     std::cin >> n;
     
     std::cout << fact(n);

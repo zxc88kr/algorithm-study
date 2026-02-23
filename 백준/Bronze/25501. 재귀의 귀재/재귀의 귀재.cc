@@ -1,37 +1,34 @@
 #include <iostream>
 #include <string>
 
-int callCount = 0;
+int calling;
 
-int recursion(std::string& s, int l, int r)
+int recursion(std::string& str, int l, int r)
 {
-    callCount++;
-
+    calling++;
     if (l >= r) return 1;
-    else if (s[l] != s[r]) return 0;
-
-    return recursion(s, l + 1, r - 1);
+    if (str[l] != str[r]) return 0;
+    return recursion(str, l + 1, r - 1);
 }
 
-int isPalindrome(std::string& s)
+int isPalindrome(std::string& str)
 {
-    callCount = 0;
-    return recursion(s, 0, s.length() - 1);
+    calling = 0;
+    return recursion(str, 0, str.size() - 1);
 }
 
 int main()
 {
     std::ios::sync_with_stdio(false);
     std::cin.tie(NULL);
-    std::cout.tie(NULL);
     
-    int T;
-    std::cin >> T;
-
-    for (int i = 0; i < T; i++)
+    int t;
+    std::cin >> t;
+    
+    std::string str;
+    for (int i = 0; i < t; i++)
     {
-        std::string str;
         std::cin >> str;
-        std::cout << isPalindrome(str) << ' ' << callCount << '\n';
+        std::cout << isPalindrome(str) << ' ' << calling << '\n';
     }
 }

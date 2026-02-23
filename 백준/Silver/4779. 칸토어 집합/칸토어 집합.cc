@@ -9,13 +9,14 @@ void kant(int n)
         return;
     }
     kant(n - 1);
-    for (int i = 0; i < std::pow(3, n - 1); i++)
-        std::cout << ' ';
+    std::cout << std::string(std::pow(3, n - 1), ' ');
     kant(n - 1);
 }
 
 int main()
 {
+    std::ios::sync_with_stdio(false);
+    
     int n;
     while (std::cin >> n)
     {

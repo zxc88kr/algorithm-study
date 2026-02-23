@@ -1,57 +1,73 @@
-#include<iostream>
-#include<math.h>
-using namespace std;
+#include <iostream>
+#include <vector>
+#include <climits>
 
-int stats[21][21];
-bool check[22];
-int N;
-int ans = 1000000000; // 10억
+std::vector<std::vector<int>> stat;
+std::vector<bool> start_member;
 
-void DFS(int x, int pos) // x는 카운트 수, pos는 다음 값
+std::vector<int> v1;
+std::vector<int> v2;
+
+int min = INT_MAX;
+
+void dfs(int depth, int n, int k)
 {
-	if (x == N / 2) // 카운트수가 정원의 1/2이 됐을 때 능력치합 계산
-	{
-		int start, link;
-		start = 0;
-		link = 0;
-
-		for (int i = 1; i <= N; i++)
-		{
-			for (int j = 1; j <= N; j++)
-			{
-				if (check[i] == true && check[j] == true) start += stats[i][j];
-				if (check[i] == false && check[j] == false) link += stats[i][j];
-			}
+    if (depth == n / 2)
+    {
+        v2.clear();
+        for (int i = 1; i <= n; i++) {
+			if (start_member[i]) continue;
+			v2.push_back(i);
 		}
-
-		int temp = abs(start - link);
-		if (ans > temp) ans = temp;
-
-		return;
-	}
-
-	for (int i = pos; i < N; i++)
-	{
-		check[i] = true;
-		DFS(x + 1, i + 1);
-		check[i] = false;
-	}
-
+        
+        int stat_diff = 0;
+        for (int i = 0; i < n / 2; i++)
+            for (int j = 0; j < n / 2; j++)
+            {
+                if (i == j) continue;
+                stat_diff += stat[v1[i]][v1[j]];
+            }
+        for (int i = 0; i < n / 2; i++)
+            for (int j = 0; j < n / 2; j++)
+            {
+                if (i == j) continue;
+                stat_diff -= stat[v2[i]][v2[j]];
+            }
+        
+        if (stat_diff < 0) stat_diff *= -1;
+        if (stat_diff < min) min = stat_diff;
+        return;
+    }
+    
+    for (int i = k + 1; i <= n; i++)
+        if (!start_member[i])
+        {
+            start_member[i] = true;
+            v1.push_back(i);
+            dfs(depth + 1, n, i);
+            v1.pop_back();
+            start_member[i] = false;
+        }
 }
 
 int main()
 {
-	cin >> N;
-
-	for (int i = 1; i <= N; i++)
-	{
-		for (int j = 1; j <= N; j++)
-		{
-			cin >> stats[i][j];
-		}
-	}
-
-	DFS(0, 1); // 카운트 0회부터 숫자는 1부터 시작
-
-	cout << ans;
+    std::ios::sync_with_stdio(false);
+    std::cin.tie(NULL);
+    
+    int n;
+    std::cin >> n;
+    
+    stat.resize(n + 1, std::vector<int>(n + 1));
+    start_member.assign(n + 1, false);
+    
+    v1.reserve(n / 2);
+    v2.reserve(n / 2);
+    
+    for (int i = 1; i <= n; i++)
+        for (int j = 1; j <= n; j++)
+            std::cin >> stat[i][j];
+    
+    dfs(0, n, 0);
+    std::cout << min;
 }

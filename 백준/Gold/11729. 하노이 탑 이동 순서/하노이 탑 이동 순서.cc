@@ -1,19 +1,22 @@
-#include <cstdio>
+#include <iostream>
 #include <cmath>
 
-void hanoi(int n, int sou, int des, int aux)
+void hanoi(int n, int begin, int end, int through)
 {
     if (n <= 0) return;
-    hanoi(n - 1, sou, aux, des);
-    printf("%d %d\n", sou, des);
-    hanoi(n - 1, aux, des, sou);
+    hanoi(n - 1, begin, through, end);
+    std::cout << begin << ' ' << end << '\n';
+    hanoi(n - 1, through, end, begin);
 }
 
 int main()
 {
-    int k;
-    scanf("%d", &k);
+    std::ios::sync_with_stdio(false);
+    std::cout.tie(NULL);
     
-    printf("%d\n", (int)std::pow(2, k) - 1);
+    int k;
+    std::cin >> k;
+    
+    std::cout << (int)std::pow(2, k) - 1 << '\n';
     hanoi(k, 1, 3, 2);
 }

@@ -18,6 +18,9 @@ void star(std::vector<std::vector<char>>& arr, int x, int y, int n)
 
 int main()
 {
+    std::ios::sync_with_stdio(false);
+    std::cout.tie(NULL);
+    
     int n;
     std::cin >> n;
     

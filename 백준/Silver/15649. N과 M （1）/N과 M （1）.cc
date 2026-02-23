@@ -1,25 +1,25 @@
 #include <iostream>
-#define MAX_DEPTH 8
+#include <vector>
+
+std::vector<int> arr;
+std::vector<bool> visited(9);
 
 void dfs(int depth, int n, int m)
 {
-    static int arr[MAX_DEPTH] = { 0, };
-    static bool visited[MAX_DEPTH + 1] = { false, };
-    
     if (depth == m)
     {
-        for (int i = 0; i < m; i++)
-            std::cout << arr[i] << ' ';
+        for (auto it : arr)
+            std::cout << it << ' ';
         std::cout << '\n';
-        return;
     }
-
+    
     for (int i = 1; i <= n; i++)
         if (!visited[i])
         {
             visited[i] = true;
-            arr[depth] = i;
+            arr.push_back(i);
             dfs(depth + 1, n, m);
+            arr.pop_back();
             visited[i] = false;
         }
 }
@@ -27,10 +27,10 @@ void dfs(int depth, int n, int m)
 int main()
 {
     std::ios::sync_with_stdio(false);
-    std::cin.tie(NULL);
     std::cout.tie(NULL);
     
-    int N, M;
-    std::cin >> N >> M;
-    dfs(0, N, M);
+    int n, m;
+    std::cin >> n >> m;
+    
+    dfs(0, n, m);
 }

@@ -5,11 +5,12 @@
 std::vector<std::pair<int, int>> blank;
 
 int sudoku[9][9];
+
 bool box[9][10];
 bool row[9][10];
 bool col[9][10];
 
-bool flag = false;
+bool flag;
 
 void dfs(int solve)
 {

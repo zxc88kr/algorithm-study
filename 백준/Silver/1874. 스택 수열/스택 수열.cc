@@ -19,10 +19,8 @@ int main()
     
     int i = 0;
     int idx = 1;
-    while (true)
+    while (i < n)
     {
-        if (i >= n) break;
-        
         if (!st.empty() && st.top() == target[i])
         {
             st.pop();

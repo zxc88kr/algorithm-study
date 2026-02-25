@@ -8,24 +8,24 @@ int main()
     int n;
     std::cin >> n;
     
-    int house[3];
-    std::cin >> house[0] >> house[1] >> house[2];
+    int c[3];
+    std::cin >> c[0] >> c[1] >> c[2];
     
-    int h0, h1, h2, n0, n1, n2;
+    int r, g, b, nr, ng, nb;
     for (int i = 1; i < n; i++)
     {
-        std::cin >> h0 >> h1 >> h2;
-        n0 = h0 + (house[1] < house[2] ? house[1] : house[2]);
-        n1 = h1 + (house[0] < house[2] ? house[0] : house[2]);
-        n2 = h2 + (house[0] < house[1] ? house[0] : house[1]);
-
-        house[0] = n0;
-        house[1] = n1;
-        house[2] = n2;
+        std::cin >> r >> g >> b;
+        nr = r + (c[1] < c[2] ? c[1] : c[2]);
+        ng = g + (c[0] < c[2] ? c[0] : c[2]);
+        nb = b + (c[0] < c[1] ? c[0] : c[1]);
+        
+        c[0] = nr;
+        c[1] = ng;
+        c[2] = nb;
     }
     
-    int min = house[0];
-    if (house[1] < min) min = house[1];
-    if (house[2] < min) min = house[2];
+    int min = c[0];
+    if (c[1] < min) min = c[1];
+    if (c[2] < min) min = c[2];
     std::cout << min;
 }

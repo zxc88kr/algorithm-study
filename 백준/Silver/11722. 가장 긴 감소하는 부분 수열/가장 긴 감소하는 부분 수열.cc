@@ -1,6 +1,5 @@
 #include <iostream>
 #include <vector>
-#include <cmath>
 #include <algorithm>
 
 int main()
@@ -12,11 +11,13 @@ int main()
     for (int i = 0; i < n; i++)
         std::cin >> arr[i];
     
-    std::vector<int> dp(n, 1);
-    for (int i = 1; i < n; i++)
-        for (int j = 0; j < i; j++)
-            if (arr[i] < arr[j])
-                dp[i] = std::max(dp[i], dp[j] + 1);
-    
-    std::cout << *std::max_element(dp.begin(), dp.end());
+    std::vector<int> lis;
+    for (int i = 0; i < n; i++)
+    {
+        int val = -arr[i];
+        auto it = std::lower_bound(lis.begin(), lis.end(), val);
+        if (it == lis.end()) lis.push_back(val);
+        else *it = val;
+    }
+    std::cout << lis.size();
 }

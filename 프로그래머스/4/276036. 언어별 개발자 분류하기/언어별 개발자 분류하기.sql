@@ -1,19 +1,20 @@
-SELECT (CASE
-        WHEN SKILL_CODE & (SELECT SUM(`CODE`)
-                           FROM SKILLCODES
-                           WHERE CATEGORY = 'Front End')
-        AND SKILL_CODE & (SELECT `CODE`
-                          FROM SKILLCODES
-                          WHERE NAME = 'Python') THEN 'A'
-        WHEN SKILL_CODE & (SELECT `CODE`
-                           FROM SKILLCODES
-                           WHERE NAME = 'C#') THEN 'B'
-        WHEN SKILL_CODE & (SELECT SUM(`CODE`)
-                           FROM SKILLCODES
-                           WHERE CATEGORY = 'Front End') THEN 'C'
-        END) AS GRADE
-        , ID, EMAIL
-FROM DEVELOPERS
-GROUP BY GRADE, ID, EMAIL
-HAVING NOT ISNULL(GRADE)
+WITH CODES AS (
+    SELECT SUM(CASE WHEN CATEGORY = 'Front End' THEN CODE ELSE 0 END) AS FRONT_CODE
+         , MAX(CASE WHEN NAME = 'Python' THEN CODE END) AS PYTHON_CODE
+         , MAX(CASE WHEN NAME = 'C#' THEN CODE END) AS CSHARP_CODE
+    FROM SKILLCODES
+),
+GRADED_DEVELOPERS AS (
+    SELECT (CASE
+            WHEN (D.SKILL_CODE & C.FRONT_CODE) != 0 AND (D.SKILL_CODE & C.PYTHON_CODE) != 0 THEN 'A'
+            WHEN (D.SKILL_CODE & C.CSHARP_CODE) != 0 THEN 'B'
+            WHEN (D.SKILL_CODE & C.FRONT_CODE) != 0 THEN 'C'
+            END) AS GRADE, ID, EMAIL
+    FROM DEVELOPERS AS D
+    JOIN CODES AS C
+)
+
+SELECT *
+FROM GRADED_DEVELOPERS
+WHERE NOT ISNULL(GRADE)
 ORDER BY GRADE, ID

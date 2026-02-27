@@ -3,11 +3,11 @@
 int paper[128][128];
 int white, blue; 
 
-void solve(int x, int y, int size)
+void solve(int x, int y, int n)
 {    
     int sum = 0;
-    for (int i = x; i < x + size; i++)
-        for (int j = y; j < y + size; j++)
+    for (int i = x; i < x + n; i++)
+        for (int j = y; j < y + n; j++)
             sum += paper[i][j];
     
     if (sum == 0)
@@ -15,13 +15,13 @@ void solve(int x, int y, int size)
         white++;
         return;
     }
-    else if (sum == size * size)
+    else if (sum == n * n)
     {
         blue++;
         return;
     }
     
-    int half = size / 2;
+    int half = n / 2;
     solve(x, y, half);
     solve(x, y + half, half);
     solve(x + half, y, half);

@@ -3,7 +3,8 @@
 #include <queue>
 #include <cmath>
 
-struct Compare {
+struct Compare
+{
   bool operator() (const int& a, const int& b)
   {
       if (std::abs(a) == std::abs(b))

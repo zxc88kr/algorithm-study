@@ -21,6 +21,6 @@ int main()
     for (int i = 0; i < m; i++)
     {
         std::cin >> x;
-        std::cout << (std::binary_search(num.begin(), num.end(), x) ? 1 : 0) << '\n';
+        std::cout << std::binary_search(num.begin(), num.end(), x) << '\n';
     }
 }

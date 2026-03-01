@@ -1,6 +1,6 @@
 #include <iostream>
-#include <unordered_set>
 #include <string>
+#include <unordered_set>
 
 int main()
 {
@@ -8,19 +8,13 @@ int main()
     std::cin >> n;
     
     std::unordered_set<std::string> st;
-    std::string str;
+    std::string topping;
     for (int i = 0; i < n; i++)
     {
-        std::cin >> str;
-        st.insert(str);
-    }
-    
-    int count = 0;
-    for (auto topping : st)
-    {
+        std::cin >> topping;
         if (topping.size() < 6) continue;
-        if (topping.substr(topping.size() - 6, 6) == "Cheese") count++;
-        if (count == 4) break;
+        if (topping.substr(topping.size() - 6, 6) == "Cheese")
+            st.insert(topping);
     }
-    std::cout << ((count == 4) ? "yummy" : "sad");
+    std::cout << ((st.size() >= 4) ? "yummy" : "sad");
 }

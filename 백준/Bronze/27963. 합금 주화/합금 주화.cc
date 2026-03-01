@@ -8,6 +8,5 @@ int main()
     
     if (d2 > d1) std::swap(d1, d2);
 
-    std::cout << std::fixed;
-    std::cout << (double)(d1 * d2 * 100) / (x * d2 + (100 - x) * d1);
+    std::cout << std::fixed << (double)(d1 * d2 * 100) / (x * d2 + (100 - x) * d1);
 }

@@ -19,9 +19,8 @@ int main()
     for (auto topping : st)
     {
         if (topping.size() < 6) continue;
-        
         if (topping.substr(topping.size() - 6, 6) == "Cheese") count++;
         if (count == 4) break;
     }
-    std::cout << ((count == 4) ? "yummy" : "sad"); 
+    std::cout << ((count == 4) ? "yummy" : "sad");
 }

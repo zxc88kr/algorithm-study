@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <string_view>
 
 int main()
 {
@@ -8,21 +9,24 @@ int main()
     
     int n;
     std::string word;
-    
     std::cin >> n >> word;
     
     bool flag = false;
-    std::string a, b;
+    std::string_view sv(word);
     for (int i = 1; i <= n; i++)
     {
-        a = word.substr(0, i);
-        b = word.substr(n - i, i);
+        std::string_view a = sv.substr(0, i);
+        std::string_view b = sv.substr(n - i, i);
         
-        int count = 0;
+        int diff = 0;
         for (int j = 0; j < i; j++)
-            if (a[j] != b[j]) count++;
+            if (a[j] != b[j])
+            {
+                diff++;
+                if (diff > 1) break;
+            }
         
-        if (count == 1)
+        if (diff == 1)
         {
             flag = true;
             break;

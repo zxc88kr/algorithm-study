@@ -24,8 +24,8 @@ int main()
             else if (shelf[i][j] == 1) q.push({i, j});
         }
     
-    std::vector<int> dx = { 0, 0, -1, 1 };
-    std::vector<int> dy = { -1, 1, 0, 0 };
+    int dx[4] = { 0, 0, -1, 1 };
+    int dy[4] = { -1, 1, 0, 0 };
     
     int day = -1;
     while (!q.empty())

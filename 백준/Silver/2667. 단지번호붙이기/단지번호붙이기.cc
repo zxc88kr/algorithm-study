@@ -1,54 +1,27 @@
 #include <iostream>
 #include <vector>
 #include <utility>
-#include <queue>
 #include <algorithm>
 
 std::vector<std::vector<int>> house;
 std::vector<std::pair<int, int>> located;
 std::vector<int> group;
 
+std::vector<int> dx = { 0, 0, -1, 1 };
+std::vector<int> dy = { -1, 1, 0, 0 };
+
+int count = 0;
+
 void dfs(int x, int y, int n)
 {
-    int count = 0;
-    std::queue<std::pair<int, int>> q;
+    if (x < 0 || x >= n || y < 0 || y >= n) return;
+    if (house[x][y] != 1) return;
     
-    q.push({x, y});
     count++;
     house[x][y]++;
     
-    while (!q.empty())
-    {
-        int xx = q.front().first;
-        int yy = q.front().second;
-        q.pop();
-        
-        if (xx + 1 < n && house[xx + 1][yy] == 1)
-        {
-            q.push({xx + 1, yy});
-            count++;
-            house[xx + 1][yy]++;
-        }
-        if (yy + 1 < n && house[xx][yy + 1] == 1)
-        {
-            q.push({xx, yy + 1});
-            count++;
-            house[xx][yy + 1]++;
-        }
-        if (xx - 1 >= 0 && house[xx - 1][yy] == 1)
-        {
-            q.push({xx - 1, yy});
-            count++;
-            house[xx - 1][yy]++;
-        }
-        if (yy - 1 >= 0 && house[xx][yy - 1] == 1)
-        {
-            q.push({xx, yy - 1});
-            count++;
-            house[xx][yy - 1]++;
-        }
-    }
-    group.push_back(count);
+    for (int i = 0; i < 4; i++)
+        dfs(x + dx[i], y + dy[i], n);
 }
 
 int main()
@@ -72,7 +45,12 @@ int main()
     {
         int x = located[i].first;
         int y = located[i].second;
-        if (house[x][y] == 1) dfs(x, y, n);
+        if (house[x][y] == 1)
+        {
+            dfs(x, y, n);
+            group.push_back(count);
+            count = 0;
+        }
     }
     
     std::sort(group.begin(), group.end());

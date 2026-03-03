@@ -11,7 +11,7 @@ void dfs(int node)
 {
     visited_order[node] = order++;
     
-    for (auto next : graph[node])
+    for (int next : graph[node])
         if (visited_order[next] == 0) dfs(next);
 }
 

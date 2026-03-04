@@ -39,7 +39,7 @@ int main()
         
         if (cd > dist[u]) continue;
         
-        for (auto p : graph[u])
+        for (auto& p : graph[u])
         {
             int v = p.first;
             int w = p.second;

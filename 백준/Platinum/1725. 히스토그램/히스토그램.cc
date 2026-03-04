@@ -1,54 +1,49 @@
-#include <cstdio>
+#include <iostream>
 #include <vector>
 #include <stack>
 
-long long getMaxRectangleArea(std::vector<int>& histogram, int n)
+long long area(std::vector<int>& v, int n)
 {
-	std::stack<int> stackHeight;
-	std::stack<int> stackIndex;
+    std::stack<int> st_height;
+    std::stack<int> st_idx;
 
-	stackHeight.push(0);
-	stackIndex.push(0);
+	st_height.push(0);
+	st_idx.push(0);
 
-	long long maxRectangleArea = 0;
+	long long max_area = 0;
 
 	for (int i = 1; i <= n + 1; i++)
 	{
-		while (stackHeight.size() > 1 && stackHeight.top() > histogram[i])
+		while (st_height.size() > 1 && st_height.top() > v[i])
 		{
-			int targetHistogramHeight = stackHeight.top();
+            long long height = st_height.top();
 
-			stackHeight.pop();
-			stackIndex.pop();
-
-			int targetHistogramIndex = stackIndex.top();
-
-			long long height = targetHistogramHeight;
-			long long width = i - targetHistogramIndex - 1;
+			st_height.pop();
+			st_idx.pop();
+            
+            long long width = i - st_idx.top() - 1;
 			long long area = height * width;
 
-			maxRectangleArea = (area > maxRectangleArea ? area : maxRectangleArea);
+            if (area > max_area) max_area = area;
 		}
-		stackHeight.push(histogram[i]);
-		stackIndex.push(i);
+		st_height.push(v[i]);
+		st_idx.push(i);
 	}
-	return maxRectangleArea;
+	return max_area;
 }
 
 int main()
 {
+    std::ios::sync_with_stdio(false);
+    std::cin.tie(NULL);
 
 	int n;
-	scanf("%d", &n);
+    std::cin >> n;
 
 	std::vector<int> histogram(n + 2);
 	for (int i = 1; i <= n; i++)
-		scanf("%d", &histogram[i]);
-
+        std::cin >> histogram[i];
 	histogram[n + 1] = 0;
-
-	long long maxRectangleArea = getMaxRectangleArea(histogram, n);
-	printf("%lld\n", maxRectangleArea);
-
-	return 0;
+    
+    std::cout << area(histogram, n);
 }

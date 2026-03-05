@@ -5,12 +5,3 @@ ON I.ANIMAL_ID = O.ANIMAL_ID
 WHERE SEX_UPON_INTAKE LIKE '%Intact%'
       AND (SEX_UPON_OUTCOME LIKE '%Spayed%' OR SEX_UPON_OUTCOME LIKE '%Neutered%')
 ORDER BY ANIMAL_ID
-
-/*
-중성화 X
-Intact
-
-중성화 O
-Spayed
-Neutered라고
-*/

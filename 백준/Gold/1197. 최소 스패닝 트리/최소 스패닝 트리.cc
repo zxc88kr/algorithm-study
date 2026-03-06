@@ -1,6 +1,6 @@
 #include <iostream>
 #include <vector>
-#include <queue>
+#include <algorithm>
 
 std::vector<int> parent;
 
@@ -21,16 +21,13 @@ void unionParent(int a, int b)
 
 struct Edge
 {
+    int w;
     int v1;
     int v2;
-    int w;
-};
-
-struct Compare
-{
-    bool operator() (const Edge& e1, const Edge& e2)
+    
+    bool operator<(const Edge& other) const
     {
-        return e1.w > e2.w;
+        return w < other.w;
     }
 };
 
@@ -46,27 +43,29 @@ int main()
     for (int i = 1; i <= v; i++)
         parent[i] = i;
     
-    std::priority_queue<Edge, std::vector<Edge>, Compare> pq;
+    std::vector<Edge> edge(e);
     
     for (int i = 0; i < e; i++)
     {
         int a, b, c;
         std::cin >> a >> b >> c;
-        pq.push({a, b, c});
+        edge[i] = {c, a, b};
     }
+    
+    std::sort(edge.begin(), edge.end());
     
     int cost = 0;
     int count = 0;
     for (int i = 0; i < e; i++)
     {
-        Edge edge = pq.top();
-        pq.pop();
+        int a = getParent(edge[i].v1);
+        int b = getParent(edge[i].v2);
         
-        if (getParent(edge.v1) == getParent(edge.v2)) continue;
+        if (a == b) continue;
         
-        unionParent(edge.v1, edge.v2);
+        unionParent(a, b);
         count++;
-        cost += edge.w;
+        cost += edge[i].w;
         
         if (count == v - 1) break;
     }

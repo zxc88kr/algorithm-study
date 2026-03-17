@@ -1,0 +1,2 @@
+#include <bits/stdc++.h>
+using namespace std;int n,a,b,i,l,o;void s(int n){cout<<n<<'\n';}void p(int x,int y,int z){for(i=0;i<z;i++)cout<<x<<':'<<y<<'\n';}main(){cin>>n>>a>>b;if(n==1){a==b?s(1):s(0);p(a,b,1);}else if(a+b<=n){s(n-a-b);p(1,0,a);p(0,1,b);p(0,0,n-a-b);}else{s(0);l=min(min(a,b),n-1);o=n-1-l;if(a<b){if(l>0){p(1,0,l);a-=l;}if(o>0){p(0,1,o);b-=o;}}else{if(l>0){p(0,1,l);b-=l;}if(o>0){p(1,0,o);a-=o;}}p(a,b,1);}}

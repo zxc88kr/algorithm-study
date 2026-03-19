@@ -4,7 +4,7 @@
 std::string solution(std::string myString)
 {
     std::string answer = "";
-    for (auto ch : myString)
+    for (char ch : myString)
         answer += std::toupper(ch);
     return answer;
 }

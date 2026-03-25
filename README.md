@@ -1,2 +1,2 @@
 # algorithm-study
-This is an auto push repository for Baekjoon Online Judge and Programmers created with [BaekjoonHub](https://github.com/BaekjoonHub/BaekjoonHub).
+This is an auto push repository for Baekjoon Online Judge and Programmers and LeetCode created with [BaekjoonHub](https://github.com/BaekjoonHub/BaekjoonHub) & [LeetHub-3.0](https://github.com/raphaelheinz/LeetHub-3.0).

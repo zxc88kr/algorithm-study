@@ -1,9 +1,7 @@
-#include <sstream>
-
 class Solution
 {
 public:
-    int lengthOfLastWord(string s)
+    int lengthOfLastWord(std::string s)
     {
         std::stringstream ss(s);
         std::string word;

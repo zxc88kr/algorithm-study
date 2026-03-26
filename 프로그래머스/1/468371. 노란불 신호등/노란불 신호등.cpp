@@ -3,6 +3,7 @@
 int solution(std::vector<std::vector<int>> signals)
 {
     int len = 1;
+    
     for (int i = 0; i < signals.size(); i++)
         len *= (signals[i][0] + signals[i][1] + signals[i][2]);
     
@@ -33,5 +34,6 @@ int solution(std::vector<std::vector<int>> signals)
             answer = i;
             break;
         }
+    
     return answer;
 }

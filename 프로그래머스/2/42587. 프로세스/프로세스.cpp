@@ -19,6 +19,7 @@ int solution(std::vector<int> priorities, int location)
     while (!q.empty())
     {
         auto cur = q.front();
+        q.pop();
         if (cur.first < pq.top()) q.push(cur);
         else
         {
@@ -26,7 +27,6 @@ int solution(std::vector<int> priorities, int location)
             order++;
             pq.pop();
         }
-        q.pop();
     }
 
     return order;

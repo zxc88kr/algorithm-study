@@ -1,6 +1,19 @@
 #include <iostream>
 #include <string>
-#include <unordered_map>
+#include <vector>
+
+std::vector<int> dna(26);
+int a, c, g, t;
+
+int count = 0;
+
+void password_check()
+{
+    if (dna['A' - 'A'] >= a &&
+        dna['C' - 'A'] >= c &&
+        dna['G' - 'A'] >= g &&
+        dna['T' - 'A'] >= t) count++;
+}
 
 int main()
 {
@@ -12,22 +25,18 @@ int main()
     
     std::string str;
     std::cin >> str;
-    
-    int a, c, g, t;
+
     std::cin >> a >> c >> g >> t;
-    
-    std::unordered_map<char, int> dna;
-    int count = 0;
-    
+
     for (int i = 0; i < p; i++)
-        dna[str[i]]++;
-    if (dna['A'] >= a && dna['C'] >= c && dna['G'] >= g && dna['T'] >= t) count++;
+        dna[str[i] - 'A']++;
+    password_check();
     
     for (int i = 0; i < s - p; i++)
     {
-        dna[str[i]]--;
-        dna[str[i + p]]++;
-        if (dna['A'] >= a && dna['C'] >= c && dna['G'] >= g && dna['T'] >= t) count++;
+        dna[str[i] - 'A']--;
+        dna[str[i + p] - 'A']++;
+        password_check();
     }
     
     std::cout << count;

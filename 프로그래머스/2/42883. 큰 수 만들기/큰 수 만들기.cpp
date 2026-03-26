@@ -4,22 +4,18 @@
 std::string solution(std::string number, int k)
 {
     std::string answer = "";
-    answer += number[0];
+    answer.push_back(number[0]);
     
     for (int i = 1; i < number.size(); i++)
     {
-        while (!answer.empty() && k > 0)
+        while (!answer.empty() && k > 0 && answer.back() < number[i])
         {
-            if (answer[answer.size() - 1] < number[i])
-            {
-                answer.erase(answer.size() - 1, 1);
-                k--;
-            }
-            else break;
+            answer.pop_back();
+            k--;
         }
-        answer += number[i];
+        answer.push_back(number[i]);
     }
-    while (k--) answer.erase(answer.size() - 1, 1);
+    while (k--) answer.pop_back();
     
     return answer;
 }

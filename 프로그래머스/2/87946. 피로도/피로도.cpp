@@ -12,9 +12,7 @@ void dfs(int depth, int tire, const std::vector<std::vector<int>>& dungeons)
         if (!visited[i] && tire >= dungeons[i][0])
         {
             visited[i] = true;
-            tire -= dungeons[i][1];
-            dfs(depth + 1, tire, dungeons);
-            tire += dungeons[i][1];
+            dfs(depth + 1, tire - dungeons[i][1], dungeons);
             visited[i] = false;
         }
 }

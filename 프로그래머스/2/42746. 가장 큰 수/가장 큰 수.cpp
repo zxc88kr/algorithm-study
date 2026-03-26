@@ -16,10 +16,11 @@ std::string solution(std::vector<int> numbers)
     
     std::sort(strs.begin(), strs.end(), compare);
     
-    if (strs[0] == "0") return "0";
-    
     std::string answer = "";
-    for (auto str : strs) answer += str;
+    for (std::string& str : strs)
+        answer += str;
+    
+    if (answer[0] == '0') answer = "0";
     
     return answer;
 }

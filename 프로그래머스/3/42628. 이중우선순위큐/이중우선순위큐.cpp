@@ -18,8 +18,8 @@ std::vector<int> solution(std::vector<std::string> operations)
         
         if (ch == 'I') ms.insert(num);
         else if (ms.empty()) continue;
-        else if (num == 1) ms.erase(*std::prev(ms.end()));
-        else if (num == -1) ms.erase(*ms.begin());
+        else if (num == 1) ms.erase(std::prev(ms.end()));
+        else if (num == -1) ms.erase(ms.begin());
     }
     
     std::vector<int> answer(2);

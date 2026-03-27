@@ -10,3 +10,4 @@ WHERE GRP IN (SELECT GRP
               FROM STADIUM_GRP
               GROUP BY GRP
               HAVING COUNT(*) >= 3)
+ORDER BY VISIT_DATE

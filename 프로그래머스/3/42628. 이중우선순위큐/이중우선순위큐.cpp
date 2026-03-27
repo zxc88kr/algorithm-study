@@ -1,35 +1,34 @@
 #include <string>
 #include <vector>
 #include <set>
+#include <iterator>
 #include <sstream>
-#include <iostream>
-using namespace std;
 
-vector<int> solution(vector<string> operations) {
-    vector<int> answer;
-    int cnt=0;
-    multiset<int, less<int>> ms; // 오름차순
-    char c; int n;
-    for(int i=0;i<operations.size();i++)
+std::vector<int> solution(std::vector<std::string> operations)
+{
+    std::multiset<int> ms;
+    
+    char ch;
+    int num;
+    
+    for (std::string& oper : operations)
     {
-        stringstream ss(operations[i]);
-        ss >> c;
-        ss >> n;
-        if(c == 'I')
-            ms.insert(n);
-        else{
-            if(n == 1 and !ms.empty())
-                ms.erase(--ms.end());
-            else if(n == -1 and !ms.empty())
-                ms.erase(ms.begin());
-            }
+        std::stringstream ss(oper);
+        ss >> ch >> num;
+        
+        if (ch == 'I') ms.insert(num);
+        else if (ms.empty()) continue;
+        else if (num == 1) ms.erase(*std::prev(ms.end()));
+        else if (num == -1) ms.erase(*ms.begin());
     }
-    if(ms.empty()) {
-        answer.push_back(0);
-        answer.push_back(0);
-    }else{
-        answer.push_back(*(--ms.end()));
-        answer.push_back(*ms.begin());
+    
+    std::vector<int> answer(2);
+    
+    if (!ms.empty())
+    {
+        answer[0] = *std::prev(ms.end());
+        answer[1] = *ms.begin();
     }
+    
     return answer;
 }

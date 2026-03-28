@@ -1,0 +1,8 @@
+SELECT NAME
+FROM EMPLOYEE
+WHERE ID IN (SELECT E2.ID
+             FROM EMPLOYEE AS E1
+             JOIN EMPLOYEE AS E2
+             ON E1.MANAGERID = E2.ID
+             GROUP BY E2.ID
+             HAVING COUNT(*) >= 5)

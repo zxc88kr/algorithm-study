@@ -1,9 +1,13 @@
 #include <iostream>
 #include <vector>
 #include <cmath>
+#include <algorithm>
 
 int main()
 {
+    std::ios::sync_with_stdio(false);
+    std::cin.tie(NULL);
+    
     int n;
     std::cin >> n;
     
@@ -13,9 +17,7 @@ int main()
     
     int max = dp[0];
     for (int i = 1; i < n; i++)
-    {
         dp[i] = std::max(dp[i - 1] + dp[i], dp[i]);
-        max = std::max(dp[i], max);
-    }
-    std::cout << max;
+    
+    std::cout << *std::max_element(dp.begin(), dp.end());
 }

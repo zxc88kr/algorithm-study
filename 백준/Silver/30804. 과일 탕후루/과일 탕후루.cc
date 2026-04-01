@@ -16,28 +16,20 @@ int main()
     std::unordered_map<int, int> m;
     
     int start = 0;
-    int end = 0;
     int max_count = 0;
     
-    while (start <= end)
+    for (int end = 0; end < n; end++)
     {
-        if (m.size() <= 2)
-        {
-            max_count = std::max(max_count, end - start);
-            
-            if (end == n) break;
-            
-            m[fruits[end]]++;
-            end++;
-        }
-        else
+        m[fruits[end]]++;
+        
+        while (m.size() > 2)
         {
             m[fruits[start]]--;
-            
             if (m[fruits[start]] == 0) m.erase(fruits[start]);
-            
             start++;
         }
+        
+        max_count = std::max(max_count, end - start + 1);
     }
     
     std::cout << max_count;

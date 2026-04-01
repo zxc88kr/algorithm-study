@@ -17,21 +17,23 @@ int main()
     
     int start = 0;
     int end = 0;
-    int sum = arr[0];
+    int sum = 0;
     int min_len = INT_MAX;
     
-    while (start <= end && end < n)
+    while (start <= end)
     {
-        if (sum >= s) min_len = std::min(min_len, end - start + 1);
         if (sum >= s)
         {
+            min_len = std::min(min_len, end - start);
+            
             sum -= arr[start];
             start++;
         }
+        else if (end == n) break;
         else
         {
-            end++;
             sum += arr[end];
+            end++;
         }
     }
     

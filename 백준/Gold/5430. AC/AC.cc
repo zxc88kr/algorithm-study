@@ -55,17 +55,17 @@ int main()
             
             if (is_forward)
             {
-                for (int i = 0; i < dq.size(); i++)
+                for (auto it = dq.begin(); it != dq.end(); it++)
                 {
-                    answer += dq[i];
+                    answer += *it;
                     answer.push_back(',');
                 }
             }
             else
             {
-                for (int i = dq.size() - 1; i >= 0; i--)
+                for (auto it = dq.rbegin(); it != dq.rend(); it++)
                 {
-                    answer += dq[i];
+                    answer += *it;
                     answer.push_back(',');
                 }
             }

@@ -46,10 +46,7 @@ int main()
         
         visited[a] = true;
         parent[a] = a;
-        how[a] = ' ';
         q.push(a);
-        
-        char kind[4] = { 'D', 'S', 'L', 'R' };
         
         while (!q.empty())
         {
@@ -59,6 +56,8 @@ int main()
             if (cur == b) break;
             
             int nexts[4] = { d_func(cur), s_func(cur), l_func(cur), r_func(cur) };
+            char kind[4] = { 'D', 'S', 'L', 'R' };
+            
             for (int i = 0; i < 4; i++)
             {
                 int next = nexts[i];

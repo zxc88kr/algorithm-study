@@ -1,24 +1,25 @@
 #include <iostream>
 #include <vector>
 #include <queue>
-#include <deque>
+#include <string>
+#include <algorithm>
 
-int d_func(const int& n)
+int d_func(int n)
 {
     return (n * 2) % 10000;
 }
 
-int s_func(const int& n)
+int s_func(int n)
 {
     return (n + 9999) % 10000;
 }
 
-int l_func(const int& n)
+int l_func(int n)
 {
     return (n % 1000) * 10 + (n / 1000);
 }
 
-int r_func(const int& n)
+int r_func(int n)
 {
     return (n % 10) * 1000 + (n / 10);
 }
@@ -55,11 +56,12 @@ int main()
             int cur = q.front();
             q.pop();
             
+            if (cur == b) break;
+            
             int nexts[4] = { d_func(cur), s_func(cur), l_func(cur), r_func(cur) };
             for (int i = 0; i < 4; i++)
             {
                 int next = nexts[i];
-                if (next < 0 || next >= MAX) continue;
                 
                 if (!visited[next])
                 {
@@ -71,17 +73,16 @@ int main()
             }
         }
         
-        std::deque<char> result;
+        std::string result = "";
         int cur = b;
-        while (parent[cur] != a)
+        
+        while (cur != a)
         {
-            result.push_front(how[cur]);
+            result.push_back(how[cur]);
             cur = parent[cur];
         }
-        result.push_front(how[cur]);
         
-        for (char& ch : result)
-            std::cout << ch;
-        std::cout << '\n';
+        std::reverse(result.begin(), result.end());
+        std::cout << result << '\n';
     }
 }

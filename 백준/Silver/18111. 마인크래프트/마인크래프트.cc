@@ -26,22 +26,21 @@ int main()
     {
         int need = 0;
         int remove = 0;
-
+        
         for (int h = 0; h <= 256; h++)
         {
             if (h < target) need += (target - h) * height_count[h];
             else remove += (h - target) * height_count[h];
         }
 
-        if (need <= remove + b)
-        {
-            int cur_time = need + remove * 2;
+        if (need > remove + b) break;
 
-            if (cur_time <= time)
-            {
-                time = cur_time;
-                max_height = target;
-            }
+        int cur_time = need + remove * 2;
+
+        if (cur_time <= time)
+        {
+            time = cur_time;
+            max_height = target;
         }
     }
 

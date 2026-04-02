@@ -43,14 +43,15 @@ int main()
     std::cout << dist[k] << '\n';
     
     std::deque<int> dq;
-    int cur = k;
     
-    for (int i = 0; i < dist[k] + 1; i++)
+    int cur = k;
+    while (cur != n)
     {
         dq.push_front(cur);
         cur = parent[cur];
     }
+    dq.push_front(n);
     
-    for (auto it : dq)
-        std::cout << it << ' ';
+    for (int x : dq)
+        std::cout << x << ' ';
 }

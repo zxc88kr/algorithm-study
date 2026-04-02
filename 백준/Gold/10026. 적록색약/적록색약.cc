@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 #include <string>
 #include <queue>
 #include <utility>
@@ -36,6 +37,19 @@ void bfs(int x, int y, std::vector<std::string>& grid, int n)
     }
 }
 
+int count_area(std::vector<std::string>& grid, int n)
+{
+    int count = 0;
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < n; j++)
+            if (grid[i][j] != 'Z')
+            {
+                bfs(i, j, grid, n);
+                count++;
+            }
+    return count;
+}
+
 int main()
 {
     std::ios::sync_with_stdio(false);
@@ -53,23 +67,5 @@ int main()
         for (int j = 0; j < n; j++)
             if (new_grid[i][j] == 'G') new_grid[i][j] = 'R';
     
-    int og_count = 0;
-    for (int i = 0; i < n; i++)
-        for (int j = 0; j < n; j++)
-            if (og_grid[i][j] != 'Z')
-            {
-                bfs(i, j, og_grid, n);
-                og_count++;
-            }
-    
-    int new_count = 0;
-    for (int i = 0; i < n; i++)
-        for (int j = 0; j < n; j++)
-            if (new_grid[i][j] != 'Z')
-            {
-                bfs(i, j, new_grid, n);
-                new_count++;
-            }
-    
-    std::cout << og_count << ' ' << new_count;
+    std::cout << count_area(og_grid, n) << ' ' << count_area(new_grid, n);
 }

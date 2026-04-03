@@ -37,6 +37,9 @@ int solution(std::string numbers)
     
     visited.assign(len, false);
     
+    s.clear();
+    str.clear();
+    
     for (int i = 1; i <= len; i++)
         dfs(0, i);
     

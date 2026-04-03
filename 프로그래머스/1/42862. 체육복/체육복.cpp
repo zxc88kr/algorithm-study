@@ -19,8 +19,8 @@ int solution(int n, std::vector<int> lost, std::vector<int> reserve)
         }
     
     int count = 0;
-    for (int x : cloth)
-        if (x >= 1) count++;
+    for (int i = 1; i <= n; i++)
+        if (cloth[i] >= 1) count++;
     
     return count;
 }

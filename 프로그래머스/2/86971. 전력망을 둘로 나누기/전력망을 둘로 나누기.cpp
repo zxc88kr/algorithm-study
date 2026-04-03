@@ -1,7 +1,7 @@
 #include <vector>
 #include <queue>
 #include <cmath>
-#include <iostream> //
+#include <algorithm>
 
 int solution(int n, std::vector<std::vector<int>> wires)
 {

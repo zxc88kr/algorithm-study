@@ -22,7 +22,5 @@ int solution(std::string name)
         h_move = std::min(h_move, i + (n - next) * 2);
     }
     
-    int answer = v_move + h_move;
-    
-    return answer;
+    return v_move + h_move;
 }

@@ -27,20 +27,13 @@ void bfs(int x)
 
 int solution(int n, std::vector<std::vector<int>> computers)
 {
-    connected.resize(n);
+    connected.resize(n, std::vector<int>());
     visited.assign(n, false);
     
     for (int i = 0; i < n; i++)
         for (int j = 0; j < n; j++)
-        {
-            if (i == j) continue;
-            
-            if (computers[i][j] == 1)
-            {
+            if (i != j && computers[i][j] == 1)
                 connected[i].push_back(j);
-                connected[j].push_back(i);
-            }
-        }
     
     int group_count = 0;
     for (int i = 0; i < n; i++)

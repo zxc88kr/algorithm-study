@@ -9,24 +9,18 @@ int solution(int n, std::vector<int> lost, std::vector<int> reserve)
     for (int x : lost) cloth[x]--;
     for (int x : reserve) cloth[x]++;
     
-    int count = 0;
     for (int i = 1; i <= n; i++)
-    {
-        if (cloth[i] >= 1) count++;
-        else
+        if (cloth[i] == 0)
         {
             if (cloth[i - 1] == 2)
-            {
-                cloth[i - 1] = 1;
-                count++;
-            }
+                cloth[i - 1] = cloth[i] = 1;
             else if (cloth[i + 1] == 2)
-            {
-                cloth[i + 1] = 1;
-                count++;
-            }
+                cloth[i + 1] = cloth[i] = 1;
         }
-    }
+    
+    int count = 0;
+    for (int x : cloth)
+        if (x >= 1) count++;
     
     return count;
 }

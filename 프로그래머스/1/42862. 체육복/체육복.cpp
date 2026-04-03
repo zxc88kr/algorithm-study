@@ -2,7 +2,7 @@
 
 int solution(int n, std::vector<int> lost, std::vector<int> reserve)
 {
-    std::vector<int> cloth(32, 0);
+    std::vector<int> cloth(n + 2, 0);
     
     for (int i = 1; i <= n; i++) cloth[i] = 1;
     
@@ -13,9 +13,13 @@ int solution(int n, std::vector<int> lost, std::vector<int> reserve)
     for (int i = 1; i <= n; i++)
     {
         if (cloth[i] >= 1) count++;
-        else if (cloth[i] == 0)
+        else
         {
-            if (cloth[i - 1] == 2) count++;
+            if (cloth[i - 1] == 2)
+            {
+                cloth[i - 1] = 1;
+                count++;
+            }
             else if (cloth[i + 1] == 2)
             {
                 cloth[i + 1] = 1;
